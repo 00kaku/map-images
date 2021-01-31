@@ -1,6 +1,7 @@
 A React application that lets you point a marker on dynamic google map and fetch all photos that are geotagged to the location.
-Hosted Link:https://map-images.herokuapp.com/
 
+
+Hosted Link:https://map-images.herokuapp.com/
 
 
 Steps to run:
