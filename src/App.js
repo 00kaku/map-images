@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import Map from './component/Map.js'
+import Images from './component/Images'
+import {BrowserRouter as Router ,Route} from 'react-router-dom';
+import {
+	GoogleMap,
+	useLoadScript,
+	Marker,
+	InfoWindow
+} from "@react-google-maps/api"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React,{Component} from 'react'
+
+const libraries =["places"]
+export default function App() {
+	const {isLoaded , loadError} = useLoadScript ({
+		googleMapsApiKey : process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+		libraries
+	});
+
+if (loadError) return "Error Loading Maps";
+if (!isLoaded) return <div className="loader"></div>;
+
+return (
+<Router>	
+<Route exact path="/">
+<Map/>
+</Route>
+<Route path="/images" component={Images} />
+</Router>
+
+	)
 }
-
-export default App;
